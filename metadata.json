@@ -1,0 +1,8 @@
+{
+  "name": "USSSOSA - Unity Senior Secondary School Old Students Association",
+  "description": "A comprehensive full-stack portal for the USSSOSA alumni community, featuring membership management, project tracking, governance transparency, and news updates.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
