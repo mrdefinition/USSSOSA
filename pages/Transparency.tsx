@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Transparency: React.FC = () => {
   const reports = [
@@ -10,10 +11,10 @@ const Transparency: React.FC = () => {
   ];
 
   const policies = [
-    { title: "Ethics & Anti-Corruption", desc: "Zero-tolerance guidelines for fund mismanagement." },
-    { title: "Conflict Resolution", desc: "Internal mediation protocols for member disputes." },
-    { title: "Data Protection Policy", desc: "How we secure and handle alumni information." },
-    { title: "Investment Policy", desc: "Guidelines for managing the USSSOSA endowment fund." }
+    { title: "Ethics & Code of Conduct", desc: "Our core framework for integrity, transparency, and professional behavior.", path: "/transparency/ethics" },
+    { title: "Privacy Charter", desc: "How we protect and manage your personal data within the global network.", path: "/transparency/privacy" },
+    { title: "Conflict Resolution", desc: "Internal mediation protocols for member disputes.", path: "#" },
+    { title: "Investment Policy", desc: "Guidelines for managing the USSSOSA endowment fund.", path: "#" }
   ];
 
   return (
@@ -75,7 +76,11 @@ const Transparency: React.FC = () => {
               <div key={idx} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="font-bold text-gray-900 text-sm mb-1">{pol.title}</h4>
                 <p className="text-xs text-gray-500 mb-3">{pol.desc}</p>
-                <button className="text-green-700 text-xs font-bold hover:underline">Read Policy &rarr;</button>
+                {pol.path && pol.path.startsWith('/') ? (
+                  <Link to={pol.path} className="text-green-700 text-xs font-bold hover:underline">Read Policy &rarr;</Link>
+                ) : (
+                  <button className="text-green-700 text-xs font-bold hover:underline">Read Policy &rarr;</button>
+                )}
               </div>
             ))}
           </div>

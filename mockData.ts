@@ -116,10 +116,22 @@ export const ALUMNI_SETS: AlumniSet[] = [
     image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400',
     executives: [
       { name: 'Chief Benson Idahosa', role: 'Chairperson', image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400' },
-      { name: 'Elder Gabriel Enahoro', role: 'Vice Chairperson', image: 'https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=400' }
+      { name: 'Elder Gabriel Enahoro', role: 'Vice Chairperson', image: 'https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      { name: 'Mrs. Victoria Nwosu', role: 'Secretary', image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=400' }
     ]
   },
-  { id: 's1990', year: 1990, leader: 'Mrs. Funmilayo Ransome', memberCount: 155, image: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=400' },
+  { 
+    id: 's1990', 
+    year: 1990, 
+    leader: 'Mrs. Funmilayo Ransome', 
+    memberCount: 155, 
+    image: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=400',
+    executives: [
+      { name: 'Mrs. Funmilayo Ransome', role: 'Chairperson', image: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      { name: 'Mr. Dele Giwa', role: 'General Secretary', image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      { name: 'Dr. Stella Adadevoh', role: 'Welfare Officer', image: 'https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg?auto=compress&cs=tinysrgb&w=400' }
+    ]
+  },
   { 
     id: 's1995', 
     year: 1995, 

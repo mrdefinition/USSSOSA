@@ -2,7 +2,8 @@
 export enum UserRole {
   PUBLIC = 'public',
   MEMBER = 'member',
-  ADMIN = 'admin'
+  ADMIN = 'admin',
+  PLATFORM_ADMIN = 'platform_admin'
 }
 
 export interface User {
@@ -12,6 +13,24 @@ export interface User {
   role: UserRole;
   graduatingYear?: number;
   location?: string;
+  phone?: string;
+}
+
+export enum EventType {
+  BIRTHDAY = 'Birthday',
+  DEATH = 'Death',
+  ACHIEVEMENT = 'Achievement',
+  OTHER = 'Other'
+}
+
+export interface MemberEvent {
+  id: string;
+  memberId: string;
+  eventType: EventType;
+  description: string;
+  eventDate: string;
+  isPublic: boolean;
+  createdAt: string;
 }
 
 export interface NewsItem {
@@ -42,7 +61,7 @@ export interface Project {
   raisedAmount?: number;
   impact?: string;
   documents?: string[];
-  setId?: string; // Optional: Link project to a specific graduating set
+  setId?: string; 
 }
 
 export interface GovernanceMember {
@@ -63,7 +82,7 @@ export interface SetExecutive {
 export interface AlumniSet {
   id: string;
   year: number;
-  leader: string; // The primary contact/chairperson
+  leader: string; 
   memberCount: number;
   image: string;
   executives?: SetExecutive[];
@@ -72,11 +91,22 @@ export interface AlumniSet {
 export interface AlumniEvent {
   id: string;
   title: string;
-  date: string; // ISO format
+  date: string; 
   time: string;
   location: string;
   description: string;
   category: 'Reunion' | 'Meeting' | 'Social' | 'Impact';
-  rsvps: string[]; // Array of user IDs
-  setId?: string; // Optional: ID of the specific graduating set
+  rsvps: string[]; 
+  setId?: string; 
+}
+
+export interface WhatsAppMessage {
+  id: string;
+  senderId: string;
+  senderName: string;
+  receiverId: string;
+  content: string;
+  timestamp: string;
+  status: 'sent' | 'received' | 'read';
+  isIncoming: boolean;
 }

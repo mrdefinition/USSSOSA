@@ -82,11 +82,24 @@ const GraduatingSets: React.FC = () => {
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between">
-                <div className="space-y-3 mb-6">
+                <div className="space-y-4 mb-6">
                   <div>
-                    <p className="text-[10px] uppercase font-bold text-gray-400 tracking-tighter">Primary Leadership</p>
-                    <p className="font-bold text-gray-900 truncate">{set.leader}</p>
-                    <p className="text-[10px] text-green-600 font-bold">{set.executives ? `${set.executives.length} Executive Roles` : 'Leadership Team'}</p>
+                    <p className="text-[10px] uppercase font-black text-emerald-600 tracking-widest mb-2">Leadership Core</p>
+                    <div className="space-y-1.5">
+                      {set.executives && set.executives.length > 0 ? (
+                        set.executives.slice(0, 3).map((exec, idx) => (
+                          <div key={idx} className="flex justify-between items-center bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
+                            <span className="text-[11px] font-bold text-gray-900 truncate max-w-[100px]">{exec.name}</span>
+                            <span className="text-[9px] font-black uppercase text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded tracking-tighter shrink-0">{exec.role}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="flex justify-between items-center bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
+                          <span className="text-[11px] font-bold text-gray-900">{set.leader}</span>
+                          <span className="text-[9px] font-black uppercase text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded tracking-tighter shrink-0">Chairperson</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div>
                     <p className="text-[10px] uppercase font-bold text-gray-400 tracking-tighter">Verified Members</p>
@@ -104,7 +117,7 @@ const GraduatingSets: React.FC = () => {
                   to={`/community/sets/${set.id}`}
                   className="w-full py-2.5 bg-gray-50 text-green-700 rounded-xl text-xs font-bold hover:bg-green-700 hover:text-white transition-all border border-green-100 shadow-sm text-center"
                 >
-                  View Set Profile
+                  View Full Profile
                 </Link>
               </div>
             </div>
@@ -125,19 +138,6 @@ const GraduatingSets: React.FC = () => {
           )}
         </div>
       </div>
-      
-      {/* Registration CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <div className="bg-green-50 p-8 rounded-3xl border border-green-100 flex flex-col md:flex-row items-center justify-between">
-          <div>
-            <h3 className="text-xl font-bold text-green-900">Don't see your graduating set?</h3>
-            <p className="text-green-700/70 text-sm mt-1">Apply to become a verified set representative and lead your class.</p>
-          </div>
-          <button className="mt-6 md:mt-0 bg-green-700 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-800 shadow-md">
-            Register a New Set
-          </button>
-        </div>
-      </section>
     </div>
   );
 };

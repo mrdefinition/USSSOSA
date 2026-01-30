@@ -142,9 +142,10 @@ const News: React.FC = () => {
                             <button 
                               key={e.id}
                               onClick={() => setSelectedEvent(e)}
-                              className="w-full text-left p-1.5 bg-green-700 text-white text-[9px] md:text-[10px] font-bold rounded shadow-sm truncate hover:bg-green-800 transition-all border border-green-800"
+                              className="w-full text-left p-1.5 bg-green-700 text-white text-[9px] md:text-[10px] font-bold rounded shadow-sm hover:bg-green-800 transition-all border border-green-800 flex justify-between items-center"
                             >
-                              {e.title}
+                              <span className="truncate">{e.title}</span>
+                              <span className="ml-1 opacity-70 shrink-0 font-black">{e.rsvps.length}</span>
                             </button>
                           ))}
                         </div>
@@ -228,11 +229,14 @@ const News: React.FC = () => {
                       onClick={() => setSelectedEvent(e)}
                       className="w-full text-left group p-4 rounded-2xl hover:bg-green-50/50 transition-colors border border-transparent hover:border-green-100 flex items-center justify-between"
                     >
-                      <div className="overflow-hidden">
-                        <p className="text-[10px] font-black text-green-700 uppercase tracking-widest mb-0.5">{e.date}</p>
+                      <div className="overflow-hidden flex-1">
+                        <div className="flex justify-between items-center mb-0.5">
+                          <p className="text-[10px] font-black text-green-700 uppercase tracking-widest">{e.date}</p>
+                          <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{e.rsvps.length} RSVPs</span>
+                        </div>
                         <p className="font-bold text-gray-900 group-hover:text-green-800 transition-colors truncate">{e.title}</p>
                       </div>
-                      <svg className="w-5 h-5 text-gray-300 group-hover:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                      <svg className="w-5 h-5 text-gray-300 group-hover:text-green-500 transition-colors ml-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                   ))}
                 </div>

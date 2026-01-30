@@ -12,12 +12,17 @@ const CATEGORIES: (ProjectCategory | 'All')[] = [
   'Sustainability & Investment Initiatives'
 ];
 
+const STATUSES: ('All' | 'ongoing' | 'completed' | 'planned')[] = ['All', 'ongoing', 'completed', 'planned'];
+
 const Programs: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'All'>('All');
+  const [activeStatus, setActiveStatus] = useState<'All' | 'ongoing' | 'completed' | 'planned'>('All');
 
-  const filteredProjects = activeCategory === 'All' 
-    ? PROJECTS 
-    : PROJECTS.filter(p => p.category === activeCategory);
+  const filteredProjects = PROJECTS.filter(p => {
+    const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
+    const matchesStatus = activeStatus === 'All' || p.status === activeStatus;
+    return matchesCategory && matchesStatus;
+  });
 
   return (
     <div className="pb-20">
@@ -52,6 +57,31 @@ const Programs: React.FC = () => {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Status Filters */}
+        <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
+          <div className="flex items-center gap-4">
+             <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Filter By Status:</span>
+             <div className="flex gap-2 p-1 bg-gray-100 rounded-2xl border border-gray-200">
+                {STATUSES.map(status => (
+                  <button
+                    key={status}
+                    onClick={() => setActiveStatus(status)}
+                    className={`px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                      activeStatus === status 
+                        ? 'bg-white text-emerald-800 shadow-sm' 
+                        : 'text-gray-500 hover:text-emerald-700'
+                    }`}
+                  >
+                    {status}
+                  </button>
+                ))}
+             </div>
+          </div>
+          <div className="text-xs font-bold text-gray-400">
+            Showing <span className="text-emerald-700">{filteredProjects.length}</span> results
+          </div>
+        </div>
+
         {filteredProjects.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredProjects.map(project => (
@@ -120,13 +150,13 @@ const Programs: React.FC = () => {
             <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             </div>
-            <h3 className="text-2xl font-black text-gray-900 mb-2">No projects found in this category</h3>
-            <p className="text-gray-500 mb-8">Try selecting a different initiative group or check back later.</p>
+            <h3 className="text-2xl font-black text-gray-900 mb-2">No projects found for these criteria</h3>
+            <p className="text-gray-500 mb-8">Try adjusting your category or status filters to see more results.</p>
             <button 
-              onClick={() => setActiveCategory('All')}
+              onClick={() => { setActiveCategory('All'); setActiveStatus('All'); }}
               className="bg-green-700 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-800 shadow-lg"
             >
-              Reset Filters
+              Clear All Filters
             </button>
           </div>
         )}
